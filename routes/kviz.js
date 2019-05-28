@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 
-let pitanja = [];
+let nizPitanja = [];
 let brojac = 0;
 
 
@@ -14,18 +14,24 @@ let connection = mysql.createConnection({
   });
 
 
-  /* POKRENI KVIZ */
+function getPitanjeUString(nizPitanja, rows){
+    for(i in rows){
+        nizPitanja.push(rows[i].tekstPitanja);              
+    }
+    let pitanje = nizPitanja[brojac];
+    return pitanje;
+}
+
+/* POKRENI KVIZ */
 router.get('/', function(req, res, next){
     connection.query("SELECT * FROM pitanja", function(error, rows, fields){
         if(error){
             console.log('Error');
         }else{
             console.log('SUCCESS');
-            for(i in rows){
-                pitanja.push(rows[i].tekstPitanja);              
-            }
-            console.log(pitanja);
-            res.render('kviz', { pitanja });
+            let pitanje = getPitanjeUString(nizPitanja, rows, brojac);
+            brojac++;
+            res.render('kviz', { pitanje });
         };
     });
 });

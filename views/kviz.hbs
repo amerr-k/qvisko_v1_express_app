@@ -1,3 +1,12 @@
 <h1>Kviz</h1>
 
-<div id="div_id"> {{pitanja}}</div>
+
+
+<form method="GET" action="/kviz">
+    <div id="div_id" name="pitanje"> {{pitanje}}</div>
+    <input type="radio" name="odgovor" value="male" checked> Male <br>
+    <input type="radio" name="odgovor" value="female"> Female <br>
+    <input type="radio" name="odgovor" value="other"> Other <br>
+
+    <input type="submit" value="Sljedece pitanje">
+</form>

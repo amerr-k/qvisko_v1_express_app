@@ -33,6 +33,7 @@ app.use(cookieParser());
 //OVO RADI ALI NECU OVAKO
 // app.use(express.static('public/javascript'));
 
+//I ovo radi
 app.use(express.static('public'));
 
 
